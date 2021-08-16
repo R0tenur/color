@@ -1,4 +1,12 @@
 # Color
+A fluent c# api for text styles in the terminal
+
+Example
+```c#
+"Hello World".Color("#b3b97e").Bold().Italic();
+```
+
+It also contains a couple of helpers:
 ## HexToRgbConverter
 Converts hex to RGB and RGB to hex
 
