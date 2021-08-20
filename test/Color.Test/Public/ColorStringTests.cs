@@ -40,7 +40,7 @@ namespace Color.Test.Public
         public void WithBackground_ShouldAddBackground_WhenColorSupported()
         {
             // Arrange
-            A.CallTo(() => _terminalSupport.Level).Returns(SupportLevel.Basic);
+            A.CallTo(() => _terminalSupport.Level).Returns(SupportLevel.TrueColor);
             var value = "Dummy";
 
             // Act
