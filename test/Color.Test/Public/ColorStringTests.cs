@@ -44,7 +44,11 @@ namespace Color.Test.Public
             var value = "Dummy";
 
             // Act
-            var colorString = ((ColorString)value).WithBackground(BasicColor.Red);
+            var colorString = new ColorString(
+                value,
+                _terminalSupport,
+                _hexToRgbConverter,
+                _ansiConverter).WithBackground(BasicColor.Red);
 
             // Assert
             colorString.ToString().ShouldBe($"\u001b[{(int)BasicColor.Red + 10}m" + value + "\u001B[49m");
