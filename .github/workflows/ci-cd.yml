@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --collect:"XPlat Code Coverage"
     - name: Pack
-      run: dotnet pack ./src/ColorSupport/ColorSupport.csproj -c release -o ./dist
+      run: dotnet pack ./src/Color/Color.csproj -c release -o ./dist
     - name: Publish code coverage
       uses: codecov/codecov-action@v1
       with:
