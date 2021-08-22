@@ -2,6 +2,7 @@
 [![CI/CD](https://github.com/R0tenur/color/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/R0tenur/color/actions/workflows/ci-cd.yml)
 [![codecov](https://codecov.io/gh/R0tenur/color/branch/main/graph/badge.svg?token=RPRGZURP9E)](https://codecov.io/gh/R0tenur/color)
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Nuget](https://img.shields.io/nuget/dt/color)
 # Color
 A fluent c# api for text styles in the terminal
 
@@ -10,7 +11,18 @@ Example
 "Hello World".Color("#b3b97e").Bold().Italic();
 ```
 
-It also contains a couple of helpers:
+It also contains a couple of helpers
+
+## Installation
+Package manager:
+```sh
+Install-Package Color
+```
+
+Dotnet cli:
+```sh
+dotnet add package Color
+```
 ## HexToRgbConverter
 Converts hex to RGB and RGB to hex
 
