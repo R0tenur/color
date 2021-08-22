@@ -7,7 +7,7 @@ namespace Color.Test.Public.Tools
 {
     public class RgbToAnsi256ConverterTest
     {
-        private readonly RgbToAnsi256Converter _converter;
+        private RgbToAnsi256Converter _converter;
         private readonly IColorDistance _distance;
         public RgbToAnsi256ConverterTest()
         {
@@ -18,7 +18,7 @@ namespace Color.Test.Public.Tools
         public void GetClosests_CachesResponseAndItterateOnlyOnce()
         {
             // Arrange
-            var call = ACallWith((1, 1, 1));
+            var call = ADistanceCallWith((1, 1, 1));
             call.Returns(1);
             // Act
 
@@ -35,7 +35,7 @@ namespace Color.Test.Public.Tools
         public void GetClosests_ShouldStopLoopIfExactColorFound()
         {
             // Arrange
-            var call = ACallWith((2, 2, 2));
+            var call = ADistanceCallWith((2, 2, 2));
             call.Returns(0);
             // Act
 
@@ -49,7 +49,7 @@ namespace Color.Test.Public.Tools
         public void GetClosests_ShouldSetNewColorWHenDistanceIsShorter()
         {
             // Arrange
-            var call = ACallWith((1, 2, 3));
+            var call = ADistanceCallWith((1, 2, 3));
             call
                 .Returns(100)
                 .Once()
@@ -66,7 +66,20 @@ namespace Color.Test.Public.Tools
             color.ShouldBe(Ansi256Color.Maroon);
         }
 
-        private IReturnValueArgumentValidationConfiguration<double> ACallWith((int red, int green, int blue) input) =>
+        [Fact]
+        public void GetClosests_ShouldLoopThroughtAllColors()
+        {
+            // Arrange
+            _converter = new RgbToAnsi256Converter();
+
+            // Act
+            var color = _converter.GetClosest((238, 238, 238));
+
+            // Assert
+            color.ShouldBe(Ansi256Color.Grey93);
+        }
+
+        private IReturnValueArgumentValidationConfiguration<double> ADistanceCallWith((int red, int green, int blue) input) =>
             A.CallTo(() => _distance.GetDistance(input, A<(int, int, int)>._));
 
     }
